@@ -8,5 +8,5 @@ Create a folder, put the skeleton inside.
 
 cd skel_name
 make
-
+./skel_name
 
