@@ -28,6 +28,8 @@ $(BUILD_DIR)/%.o: %.cpp | build_dir
 
 clean:
 	-rm -f $(BUILD_OBJS)
+	-rm -f $(BUILD_DIR)/*.o
+	-rm -f $(BUILD_DIR)/*.d
 	-rmdir $(BUILD_DIR)
 
 mrproper: clean
