@@ -1,13 +1,14 @@
 #!/bin/bash
+SKEL_DIR=$(dirname "$0")
 if [ "$1" = "" ]; then
 	echo "missing name"
 else
 	if [ -d "$1" ]; then
-		echo "Already exists"
+		echo "Folder [$1] already exists"
 	else
 		mkdir "$1"
-		cp makefile "$1"
-		cp skel.cpp "$1/$1.cpp"
+		cp $SKEL_DIR/makefile "$1"
+		cp $SKEL_DIR/skel.cpp "$1/$1.cpp"
 		sed -i "s/skeleton/$1/g" "$1/makefile"
 	fi
 fi
