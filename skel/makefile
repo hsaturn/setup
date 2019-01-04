@@ -1,7 +1,7 @@
 SRC=$(wildcard *.cpp)
 OBJS=$(SRC:.cpp=.o)
 BUILD_DIR=build
-OPTS=-std=c++17
+OPTS=-std=c++17 -MMD
 BUILD_OBJS=$(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o))
 LINKER=g++ $(OPTS)
 LINK_POSTOPT=-pthread
@@ -9,6 +9,8 @@ COMPILER=g++
 TARGET=skeleton
 
 all: build_dir skeleton
+
+-include $(BUILD_DIR)/*.d
 
 .PHONY: build_dir
 build_dir:
