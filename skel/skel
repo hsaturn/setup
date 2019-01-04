@@ -6,10 +6,13 @@ else
 	if [ -d "$1" ]; then
 		echo "Folder [$1] already exists"
 	else
+		IGNORE="$1/.gitignore"
 		mkdir "$1"
 		cp $SKEL_DIR/makefile "$1"
 		cp $SKEL_DIR/skel.cpp "$1/$1.cpp"
 		sed -i "s/skeleton/$1/g" "$1/makefile"
+		echo "build" >> "$IGNORE"
+		echo "$1" >> "$IGNORE"
 	fi
 fi
 
