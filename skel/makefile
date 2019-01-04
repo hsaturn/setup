@@ -12,7 +12,7 @@ all: build_dir skeleton
 
 .PHONY: build_dir
 build_dir:
-	mkdir -p $(BUILD_DIR)
+	@mkdir -p $(BUILD_DIR)
 
 skeleton: $(BUILD_OBJS)
 	@echo "Linking"
@@ -23,7 +23,7 @@ skeleton: $(BUILD_OBJS)
 	$(COMPILER) $(OPTS) -c $< -o $@
 
 
-$(BUILD_DIR)/%.o: %.cpp build_dir
+$(BUILD_DIR)/%.o: %.cpp | build_dir
 	$(COMPILER) $(OPTS) -c $< -o $@
 
 clean:
