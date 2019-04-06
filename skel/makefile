@@ -8,7 +8,7 @@ LINK_POSTOPT=-pthread
 COMPILER=g++
 TARGET=skeleton
 
-all: build_dir skeleton
+all: build_dir $(TARGET)
 
 -include $(BUILD_DIR)/*.d
 
@@ -16,7 +16,7 @@ all: build_dir skeleton
 build_dir:
 	@mkdir -p $(BUILD_DIR)
 
-skeleton: $(BUILD_OBJS)
+$(TARGET): $(BUILD_OBJS)
 	@echo "Linking"
 	$(LINKER) -o $@ $^ $(LINK_POSTOPT)
 	@echo "Link done"
