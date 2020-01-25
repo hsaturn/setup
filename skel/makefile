@@ -29,6 +29,7 @@ clean:
 	-rm -f $(BUILD_DIR)/*.o
 	-rm -f $(BUILD_DIR)/*.d
 	-rmdir $(BUILD_DIR)
+	-rm -f skeleton
 
 mrproper: clean
 	rm -f $(TARGET)
