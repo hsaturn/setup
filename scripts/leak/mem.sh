@@ -1,11 +1,10 @@
 #!/bin/bash
 output="$PWD/dat"
-exe=ls
 
 function usage()
 {
   echo
-  echo "Usage: $0 [ -p pid ] [cp1 [cp2]]"
+  echo "Usage: $0 [ -p pid | progname ] [cp1 [cp2]]"
   echo
   echo "  cp1 : use this checkpoint to compare against current"
   echo "  cp1 and cp2 : use history and compare"
@@ -13,34 +12,49 @@ function usage()
   exit 1
 }
 
+function error()
+{
+  echo "Error: $*"
+  exit 1
+}
+
 function exists()
 {
   if [ ! -f "$1" ]; then
-    echo "No checkpoint file ($1)"
-    exit
+    error "No checkpoint file ($1)"
   fi
 }
 
 while [ "$1" != "" ]; do
-  if [ "$1" == -p ]; then
-    shift
-    pid=$1
-    exe="binary-$pid"
-  else
-    if [ "$cp1" == "" ]; then
-      cp1=$1
-    else if [ "$cp2" == "" ]; then
-      cp2=$1
-    else
-      echo "-> Spurious arg ($1)"
-      usage
-    fi fi
-  fi
+  case $1 in
+    -h)
+        usage;;
+    -p)
+        [ "$pid" != "" ] && usage
+        shift
+        pid=$1
+        exe="binary-$pid"
+        ;;
+
+    ''|*[!0-9]*)
+        [ "$pid" != "" ] && error "Spurious arg ($1)"
+        pid=$(pidof $1)
+        [ "$pid" == "" ] && error "Cannot find process ($1)"
+        ;;
+    *)
+        if [ "$cp1" == "" ]; then
+          cp1=$1 && echo "Check point 1: $cp1"
+        else if [ "$cp2" == "" ]; then
+          cp2=$1 && echo "Check point 2: $cp2"
+        else
+          error "-> Spurious arg ($1)"
+        fi fi
+        ;;
+    esac
   shift
 done
 
-[ "$pid" == "" ] && pid=$(pidof $exe)
-[ "$pid" == "" ] && echo "No pid" && exit 1
+[ "$pid" == "" ] && usage
 
 if [ "$cp1" != "" -a "$cp2" != "" ]; then
   f1="$output/mem-$pid-$cp1"
@@ -54,7 +68,6 @@ fi
 mkdir -p "$output"
 for i in {0..99}; do
   file="$output/mem-$pid-$i"
-  echo "file=$file"
   if [ -f "$file" ]; then
     prevfile="$file"
   else
