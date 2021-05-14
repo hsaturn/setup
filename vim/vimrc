@@ -1,1 +1,65 @@
 cnoremap <expr> q<CR> &diff ? 'qa<CR>' : 'q<CR>'
+set scrolloff=4
+set nu
+set ts=2
+set sw=2
+set hls
+set is
+set smartindent
+hi MatchParen cterm=bold ctermbg=blue ctermfg=green
+
+set nobackup
+set nowritebackup
+set noswapfile
+
+set backspace=indent,eol,start
+set virtualedit=
+set copyindent
+set previewheight=3
+
+nnoremap <C-t><Right> :tabnext<CR>
+nnoremap <C-t><Left>  :tabprevious<CR>
+
+function! SourceIfExist(file)
+  " echo a:file
+  if filereadable(expand("~/.vim/hsavim/".a:file))
+    exe 'source' "~/.vim/hsavim/".a:file
+    return 1
+  endif
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+    return 1
+  endif
+  return 0
+endfunction
+
+" F4 got next error list
+nnoremap <F4> :cnewer<CR>
+" Shift F4 goto previous list (use ctrl v to modify the key
+nnoremap O2S :colder<CR>
+
+" F5 reload files if needed
+nnoremap <F5> :w! /dev/null<CR>:checktime<CR>
+
+nnoremap <F6> :set wrap!<CR>
+
+nnoremap <F8> :mksession! .session.vim<CR>:echo "Session saved"<CR>
+
+" Git shortcuts
+" if <fugitive>
+nnoremap Gd :Git diff<CR>
+nnoremap GG :execute "Git grep '\\<" .expand("<cword>") ."\\>'"<CR><CR>:copen<CR>
+
+
+" TAB : switch between C and H
+if SourceIfExist("~/.vim/a.vim")
+  nnoremap <TAB> :A<CR>
+  nnoremap <S-TAB> :AV<CR>
+endif
+
+call SourceIfExist("mouse.vim")
+call SourceIfExist("show_func_name.vim")
+call SourceIfExist("windows.vim")
+call SourceIfExist("close.vim")
+call SourceIfExist("highlight/highlight.vim")
+

@@ -1,3 +1,5 @@
+" Why not miami
+" Miami Is Another Marker Implementation
 if exists('g:loaded_highlight')
   finish
 else
