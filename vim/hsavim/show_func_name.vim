@@ -11,7 +11,6 @@ function! ToggleFuncName()
   endif
 endfunction
 nnoremap <F9> :call ToggleFuncName()
-map <silent> f :call ShowFuncName()<CR>
 
 function! ShowFuncName()
   if s:show_func_name
@@ -37,6 +36,10 @@ function! ShowFuncName()
   endif
 endfunction
 
+" Workaround for CursorMoved not being able to
+" fire when cursor at bottom of window stays there
+" only the content of the windows scrolls
+map <silent> f :call ShowFuncName()<CR>
 nmap <Down> jf
 nmap <Up> kf
 nmap <PageDown> <C-f>f
