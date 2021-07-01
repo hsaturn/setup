@@ -4,13 +4,12 @@ let s:shown_func=0
 function! ToggleFuncName()
   let s:show_func_name = 1 - s:show_func_name
   if s:show_func_name
-      echo "Show function name enabled"
-    else
-      echo "Show function name disabled"
-    endif
+    echo "Show function name enabled"
+  else
+    echo "Show function name disabled"
   endif
 endfunction
-nnoremap <F9> :call ToggleFuncName()
+nnoremap <F9> :call ToggleFuncName()<CR>
 
 function! ShowFuncName()
   if s:show_func_name
