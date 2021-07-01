@@ -21,6 +21,7 @@ TAB       Switch between source and header file (c/c++)
 With fugitive:
 Gd        Git diff
 GG        Git grep word under cursor
+Gb        Git blame
 
 F2        Toggle mouse
 F3        Go to next search (ex: Git grep etc)

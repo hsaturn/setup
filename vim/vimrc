@@ -49,6 +49,7 @@ nnoremap <F8> :mksession! .session.vim<CR>:echo "Session saved"<CR>
 " if <fugitive>
 nnoremap Gd :Git diff<CR>
 nnoremap GG :execute "Git grep '\\<" .expand("<cword>") ."\\>'"<CR><CR>:copen<CR>
+nnoremap Gb :Git blame<CR>
 
 
 " TAB : switch between C and H
