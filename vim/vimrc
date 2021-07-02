@@ -33,6 +33,9 @@ function! SourceIfExist(file)
   return 0
 endfunction
 
+" F3 got to next error in list
+nnoremap <F3> :cnext<CR>
+nnoremap <S-F3> :cprevious<CR>
 " F4 got next error list
 nnoremap <F4> :cnewer<CR>
 " Shift F4 goto previous list (use ctrl v to modify the key
