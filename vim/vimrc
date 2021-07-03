@@ -61,6 +61,8 @@ if SourceIfExist("~/.vim/a.vim")
   nnoremap <S-TAB> :AV<CR>
 endif
 
+nnoremap F :Explore<CR>
+
 call SourceIfExist("mouse.vim")
 call SourceIfExist("show_func_name.vim")
 call SourceIfExist("windows.vim")
