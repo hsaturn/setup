@@ -50,10 +50,10 @@ nnoremap <F8> :mksession! .session.vim<CR>:echo "Session saved"<CR>
 
 " Git shortcuts
 " if <fugitive>
-nnoremap Gd :Git diff<CR>
+nnoremap Gd :Git diff '" . expand("%") . "'".<CR><CR>
 nnoremap GG :execute "Git grep '\\<" .expand("<cword>") ."\\>'"<CR><CR>:copen<CR>
 nnoremap Gb :Git blame<CR>
-
+nnoremap Gm :execute '/<<<<<<<\\|=======\\|>>>>>>>'<CR>
 
 " TAB : switch between C and H
 if SourceIfExist("~/.vim/a.vim")
