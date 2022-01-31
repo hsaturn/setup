@@ -4,6 +4,7 @@ if exists('g:loaded_highlight')
   finish
 else
   let g:loaded_highlight = 1
+  let s:create_groups=1
 
   " Global configuration / keymap
   noremap h     :call HighLightHandler(expand("<cword>"), 0)<cr>
@@ -37,8 +38,7 @@ function! HighLightWinit()
 endfunction
 
 function! HighLightCreateGroups()
-  if !exists("w:create_groups")
-    let w:create_groups=1
+  if s:create_groups
     let s:groups=[]
     if filereadable(s:file)
       let counter=1
@@ -68,6 +68,7 @@ function! HighLightCreateGroups()
       endfor
     endif
   endif
+  " let s:create_groups=0
 endfunction
 
 function! HighLightTab(word, recolor)
