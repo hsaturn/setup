@@ -67,9 +67,9 @@ function! HighLightCreateGroups()
         let s:groups = s:groups+[name]
       endfor
     endif
+    " let s:create_groups=0
   endif
-  " let s:create_groups=0
-endfunction
+ndfunction
 
 function! HighLightTab(word, recolor)
   call HighLightWinit()
