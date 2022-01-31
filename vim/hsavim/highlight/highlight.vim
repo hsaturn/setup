@@ -213,6 +213,23 @@ function! HighLightSaveGroups()
   call writefile(out, s:sg_file, 'b')
 endfunction
 
+function! HighLightSearchNext(flag)
+  call HighLightWinit()
+  let l:found=999999999
+  let l:word=""
+  for key in keys(w:highlights)
+    let l:srch='\<'.key.'\>'
+    let l:pos = search(l:srch, a:flag.'nz')
+    if (l:pos < l:found) && l:pos>0
+      let l:found=l:pos
+      let l:word=l:srch
+    endif
+  endfor
+  if l:word != ''
+    call search(l:word)
+  endif
+endfunction
+
 function! HighLightLoadWordMapping()
   call HighLightCreateGroups()
   let l:groups={}
