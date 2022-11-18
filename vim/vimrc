@@ -61,7 +61,7 @@ if SourceIfExist("~/.vim/a.vim")
   nnoremap <S-TAB> :AV<CR>
 endif
 
-SourceIfExist("~/.vim/basenumbers.vim")
+call SourceIfExist("~/.vim/basenumbers.vim")
 
 nnoremap F :Explore<CR>
 
