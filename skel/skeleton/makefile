@@ -1,7 +1,7 @@
 SRC=$(wildcard *.cpp)
 OBJS=$(SRC:.cpp=.o)
 BUILD_DIR=build
-OPTS=-std=c++17 -MMD
+OPTS=-std=c++17 -g -MMD
 BUILD_OBJS=$(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o))
 LINKER=g++ $(OPTS)
 LINK_POSTOPT=-pthread

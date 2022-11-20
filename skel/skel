@@ -1,5 +1,6 @@
 #!/bin/bash
-SKEL_DIR=$(dirname "$0")
+SKEL_DIR=$(dirname $0)/skeleton
+echo "SKEL_DIR=$SKEL_DIR"
 if [ "$1" = "" ]; then
 	echo "missing name"
 else
@@ -8,11 +9,17 @@ else
 	else
 		IGNORE="$1/.gitignore"
 		mkdir "$1"
+		cp $SKEL_DIR/go "$1"
 		cp $SKEL_DIR/makefile "$1"
 		cp $SKEL_DIR/skel.cpp "$1/$1.cpp"
+		cp $SKEL_DIR/skeleton.vim "$1/.session.vim"
+		sed -i "s/skeleton/$1/g" "$1/go"
 		sed -i "s/skeleton/$1/g" "$1/makefile"
+		sed -i "s/skeleton/$1/g" "$1/.session.vim"
 		echo "build" >> "$IGNORE"
 		echo "$1" >> "$IGNORE"
 	fi
+	cd $1
+	vim -S .session.vim
 fi
 

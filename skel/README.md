@@ -4,9 +4,7 @@ Makefile skeleton for quick c++ test
 ## usage
 ./skel {skel_name}
 
-Create a folder, put the skeleton inside.
+This command creates a folder, put the skeleton inside and run vim with
+a term ready to run the go script
 
-cd skel_name
-make
-./skel_name
 

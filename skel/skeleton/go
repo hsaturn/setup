@@ -1,0 +1,18 @@
+#!/bin/bash
+
+old=""
+while [ "1" == "1" ]; do
+  md=$(md5sum *.h *.cpp makefile 2>/dev/null | md5sum)
+  if [ "$md" != "$old" ]; then
+    [ "$pid" != "" ] && echo "Killing old process" && kill -kill $pid >/dev/null 2>&1
+    run=0
+    make && clear && date && run=1
+    if [ "$run" == "1" ]; then
+      ./skeleton &
+      pid=$!
+    fi
+    old=$md
+    echo "`date` $old $md" >> log
+  fi
+  sleep 1
+done
