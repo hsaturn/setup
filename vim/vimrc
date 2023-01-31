@@ -34,12 +34,7 @@ function! SourceIfExist(file)
 endfunction
 
 " F3 got to next error in list
-nnoremap <F3> :cnext<CR>
-nnoremap <S-F3> :cprevious<CR>
-" F4 got next error list
-nnoremap <F4> :cnewer<CR>
-" Shift F4 goto previous list (use ctrl v to modify the key
-nnoremap O2S :colder<CR>
+" --> moved in f3.vim
 
 " F5 reload files if needed
 nnoremap <F5> :w! /dev/null<CR>:checktime<CR>
@@ -51,7 +46,7 @@ nnoremap <F8> :mksession! .session.vim<CR>:echo "Session saved"<CR>
 " Git shortcuts
 " if <fugitive>
 nnoremap gd :Git diff '" . expand("%") . "'".<CR><CR>
-nnoremap gG :execute "Git grep '\\<" .expand("<cword>") ."\\>'"<CR><CR>:copen<CR>
+nnoremap gG :execute "Git grep '\\<" .expand("<cword>") ."\\>'"<CR>
 nnoremap gB :Git blame<CR>
 nnoremap gb :Git blame<CR>
 nnoremap gm :execute '/<<<<<<<\\|=======\\|>>>>>>>'<CR>
@@ -71,4 +66,4 @@ call SourceIfExist("show_func_name.vim")
 call SourceIfExist("windows.vim")
 call SourceIfExist("close.vim")
 call SourceIfExist("highlight/highlight.vim")
-
+call SourceIfExist("f3.vim")
