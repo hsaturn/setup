@@ -1,4 +1,5 @@
 cnoremap <expr> q<CR> &diff ? 'qa<CR>' : 'q<CR>'
+syn on
 set scrolloff=4
 set nu
 set ts=2
